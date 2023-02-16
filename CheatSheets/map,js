@@ -1,37 +1,71 @@
-let map = new Map();                                               
-map.set("one", 1);                                                   
-map.set("aight", 8);
-map.set("two", 2);
-let sorted = Array.from(map.entries())
-                  .sort((a, b) => a[1] - b[1]); 
-let sortedKeys = Array.from(map.keys())
-                   .sort((a, b) => (a.localeCompare(b)));
-let sortedValues = Array.from(map.values())
-                   .sort((a, b) => (a - b));
+let mapCollection = new Map();
+mapCollection.set("one", 1);
+mapCollection.set("aight", 8);
+mapCollection.set("two", 2);
+mapCollection.set("three", 3);
+console.log(mapCollection);
+
+// delete
+mapCollection.delete("three");
+console.log(mapCollection);
+
+// has
+console.log(mapCollection.has('one'));
+
+// sort entries
+let sorted = Array.from(mapCollection.entries())
+    .sort((a, b) => a[1] - b[1]);
+
+// variant 1
 for (let kvp of sorted) {
     console.log(`${kvp[0]} -> ${kvp[1]}`);
 }
 
+// variant 2
 for (let [key, value] of sorted) {
     console.log(`The key: ${key} -> the value: ${value}`);
 }
 
+// sort keys
+let sortedKeys = Array.from(mapCollection.keys())
+    .sort((a, b) => (a.localeCompare(b)));
+
+// print sorted keys of sortedKeys
 for (let key of sortedKeys) {
     console.log(`The key in sortedKeys: ${key}`);
 }
 
+// sort values
+let sortedValues = Array.from(mapCollection.values())
+    .sort((a, b) => (a - b));
+
+// print sorted values of sortedValues
 for (let value of sortedValues) {
     console.log(`The value in sortedKeys: ${value}`);
 }
 
+
+// print by index from both - sortedKeys and sortedValues
 for (let index = 0; index < sortedKeys.length; index++) {
     console.log(`The key in sortedKeys is: ${sortedKeys[index]}, The value in sortedValues is: ${sortedValues[index]}`);
 }
 
-
 console.log(`Sorted keys: ${sortedKeys.join(', ')}`);
 console.log(`Sorted values: ${sortedValues}`);
 
+// sort array
 let arr = ['one', 'aight', 'two'];
 arr.sort((a, b) => (a.localeCompare(b)));
 console.log(arr);
+
+// convert map into Object
+const mapInObj = Object.fromEntries(mapCollection);
+console.table(mapInObj);
+
+// stringify the object
+let stringifyIt = JSON.stringify(mapInObj);
+console.log(stringifyIt);
+
+// parse the stringified
+let parseIt = JSON.parse(stringifyIt)
+console.log(parseIt);
