@@ -7,18 +7,16 @@
     <link rel="stylesheet" href="template.css">
 </head>
 
-<body>
+<body onload="checkCookies()">
     <h1 onclick="this.innerHTML='Cereal!'">What is my favorite food?</h1>
     <h1 onclick="changeColor(this)">Click to change color!</h1>
     <button id="myBtn">Click ME!!!</button>
 
-    <body onload="checkCookies()">
+    <input type="text" id="words" oninput="removeLetterFromH1()" />
 
-        <input type="text" id="words" oninput="removeLetterFromH1()" />
-
-        <div onmouseover="mOver(this)" onmouseout="mOut(this)" class="box">
-            Mouse Over Me</div>
-        <script src="domEvents.js"></script>
-    </body>
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" class="box">
+        Mouse Over Me</div>
+    <script src="domEvents.js"></script>
+</body>
 
 </html>
