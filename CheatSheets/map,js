@@ -1,0 +1,19 @@
+let map = new Map();                                               
+map.set("one", 1);                                                   
+map.set("aight", 8);
+map.set("two", 2);
+let sorted = Array.from(map.entries())
+                  .sort((a, b) => a[1] - b[1]); 
+let sortedKeys = Array.from(map.keys())
+                   .sort((a, b) => (a.localeCompare(b)));
+let sortedValues = Array.from(map.values())
+                   .sort((a, b) => (a - b));
+for (let kvp of sorted) {
+    console.log(`${kvp[0]} -> ${kvp[1]}`);
+}
+console.log(`Sorted keys: ${sortedKeys.join(', ')}`);
+console.log(`Sorted values: ${sortedValues}`);
+
+let arr = ['one', 'aight', 'two'];
+arr.sort((a, b) => (a.localeCompare(b)));
+console.log(arr);
