@@ -15,7 +15,7 @@ console.log(mapCollection.has('one'));
 // size
 console.log(`Size of the MAP Collection is ${mapCollection.size}`);
 
-// sort entries
+// sort entries - it is an array for an Object, but for a map is an iterator
 let sorted = Array.from(mapCollection.entries())
     .sort((a, b) => a[1] - b[1]);
 
@@ -23,6 +23,8 @@ let sorted = Array.from(mapCollection.entries())
 for (let kvp of sorted) {
     console.log(`${kvp[0]} -> ${kvp[1]}`);
 }
+
+console.log('************************');
 
 // variant 2
 for (let [key, value] of sorted) {
