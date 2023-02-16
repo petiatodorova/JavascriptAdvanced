@@ -12,6 +12,9 @@ console.log(mapCollection);
 // has
 console.log(mapCollection.has('one'));
 
+// size
+console.log(`Size of the MAP Collection is ${mapCollection.size}`);
+
 // sort entries
 let sorted = Array.from(mapCollection.entries())
     .sort((a, b) => a[1] - b[1]);
