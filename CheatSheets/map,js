@@ -11,6 +11,24 @@ let sortedValues = Array.from(map.values())
 for (let kvp of sorted) {
     console.log(`${kvp[0]} -> ${kvp[1]}`);
 }
+
+for (let [key, value] of sorted) {
+    console.log(`The key: ${key} -> the value: ${value}`);
+}
+
+for (let key of sortedKeys) {
+    console.log(`The key in sortedKeys: ${key}`);
+}
+
+for (let value of sortedValues) {
+    console.log(`The value in sortedKeys: ${value}`);
+}
+
+for (let index = 0; index < sortedKeys.length; index++) {
+    console.log(`The key in sortedKeys is: ${sortedKeys[index]}, The value in sortedValues is: ${sortedValues[index]}`);
+}
+
+
 console.log(`Sorted keys: ${sortedKeys.join(', ')}`);
 console.log(`Sorted values: ${sortedValues}`);
 
