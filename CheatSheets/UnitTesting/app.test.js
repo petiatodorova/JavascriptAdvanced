@@ -3,6 +3,9 @@ const sum = require('./app.js');
 // module.exports = sum; in sum function
 // const sum = require('./app.js'); here
 // mocha app.test.js
+// 1. npm init -y
+// 2. npm install chai
+// 3. mocha app.test.js
 
 describe('Main test', function () {
     it('works with whole numbers', function () {

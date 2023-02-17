@@ -28,6 +28,7 @@ function solution() {
   // console.log(document.getElementById('fname').value);
 
   // 5. Добавяме eventListener
+  // If the button is of type 'submit', we should use ev.preventDefault() for the button;
   submitButton.addEventListener('click', (ev) => {
     // console.log(ev.target);
     const fullName = inputValues[0];

@@ -15,6 +15,7 @@ function solution() {
   const labelValues = Array.from(document.getElementById('form').querySelectorAll('label'));
 
   // submit button
+  // If the button is of type 'submit', we should use ev.preventDefault() for the button;
   submitButton.addEventListener('click', (ev) => {
     // console.log(ev.target);
     const fullName = inputValues[0];
