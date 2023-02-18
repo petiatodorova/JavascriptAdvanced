@@ -7,6 +7,22 @@ class footballTeam {
     }
 
     newAdditions(footballPlayers) {
+        // // map - returns another array with function applied to every item
+        // console.log('\n---map example:');
+        // arr = [1, 2, 3];
+        // let doubled = arr.map(function (item) {
+        //     return item * 2;
+        // });
+        // console.log(doubled);
+
+
+        // // filter - filters the array with the condition of the function
+        // console.log('\n---filter example:');
+        // arr = [1, 2, 3];
+        // let evens = arr.filter(function (item) {
+        //     return item % 2 === 0;
+        // });
+        // console.log(evens);
         footballPlayers.map(p => {
             let [name, age, playerValue] = p.split('/');
             age = Number(age);
@@ -32,24 +48,24 @@ class footballTeam {
         let boughtPlayer = '';
         let buyingPrice = 0;
 
-        
-            let [name, playerOffer] = selectedPlayer.split('/');
-            playerOffer = Number(playerOffer);
-            let player = this.invitedPlayers.find(a => a.name == name);
-            if (player) {
 
-                if (player.playerValue > playerOffer) {
-                    let priceDifference = player.playerValue - playerOffer;
-                    throw new Error(`The manager's offer is not enough to sign a contract with ${name}, ${priceDifference} million more are needed to sign the contract!`)
-                }
-                else {
-                    player.playerValue = 'Bought';
-                    boughtPlayer = player.name;
-                    buyingPrice = playerOffer;
-                }
-            } else {
-                throw new Error(`${name} is not invited to the selection list!`)
+        let [name, playerOffer] = selectedPlayer.split('/');
+        playerOffer = Number(playerOffer);
+        let player = this.invitedPlayers.find(a => a.name == name);
+        if (player) {
+
+            if (player.playerValue > playerOffer) {
+                let priceDifference = player.playerValue - playerOffer;
+                throw new Error(`The manager's offer is not enough to sign a contract with ${name}, ${priceDifference} million more are needed to sign the contract!`)
             }
+            else {
+                player.playerValue = 'Bought';
+                boughtPlayer = player.name;
+                buyingPrice = playerOffer;
+            }
+        } else {
+            throw new Error(`${name} is not invited to the selection list!`)
+        }
 
 
         return `Congratulations! You sign a contract with ${boughtPlayer} for ${buyingPrice} million dollars.`;

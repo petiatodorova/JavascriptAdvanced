@@ -1,19 +1,11 @@
 const { expect } = require('chai');
-const sum = require('./app.js');
-// module.exports = sum; in sum function
-// const sum = require('./app.js'); here
-// mocha app.test.js
+const library = require('./index.js');
 // 1. npm init -y
 // 2. npm install chai
 // 3. mocha app.test.js
-
-const { expect } = require('chai');
-const library = require('./index.js');
-// module.exports = library; --> in main 
-
-// const library = require('./index.js'); --> here
-
-// mocha app.test.js
+// 4. module.exports = library; --> in main 
+// 5. const library = require('./index.js'); --> here
+// 6. mocha app.test.js
 
 describe('Main tests ', function () {
     
