@@ -28,11 +28,33 @@ describe('Library tests ', function () {
     });
 
     describe('findBook tests', function () {
-    
-    
+        it('invalid input - empty array', function () {
+            expect(() => library.findBook([], 'Desired Book')).to.throw('No books currently available');
+        })
+        it('valid input - available book', function () {
+            expect(library.findBook(['Desired Book'], 'Desired Book')).to.equal('We found the book you want.');
+        })
+        it('valid input - not available book', function () {
+            expect(library.findBook(['Troy', 'Life Style', 'Torronto'], 'Desired Book')).to.equal('The book you are looking for is not here!');
+        })
     });
 
     describe('arrangeTheBooks tests', function () {
+        it('the countBooks is not an integer number', function () {
+            expect(() => library.arrangeTheBooks('1')).to.throw('Invalid input');
+        })
+        it('the countBooks is a negative number', function () {
+            expect(() => library.arrangeTheBooks(-1)).to.throw('Invalid input');
+        })
+        it('all the books are arranged on the shelves', function () {
+            expect(library.arrangeTheBooks(39)).to.equal('Great job, the books are arranged.');
+        })
+        it('all the books are arranged on the shelves - edge case 40 books', function () {
+            expect(library.arrangeTheBooks(40)).to.equal('Great job, the books are arranged.');
+        })
+        it('all the books are more than 40 - insufficient space', function () {
+            expect(library.arrangeTheBooks(41)).to.equal('Insufficient space, more shelves need to be purchased.');
+        })
     
     
     });

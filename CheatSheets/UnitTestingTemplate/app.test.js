@@ -9,8 +9,10 @@ const sum = require('./app.js');
 
 const { expect } = require('chai');
 const library = require('./index.js');
-// module.exports = sum; in sum function
-// const sum = require('./app.js'); here
+// module.exports = library; --> in main 
+
+// const library = require('./index.js'); --> here
+
 // mocha app.test.js
 
 describe('Main tests ', function () {
@@ -21,9 +23,14 @@ describe('Main tests ', function () {
             expect(() => library.calcPriceOfBook('a', 'a')).to.throw('Invalid input');
         })
 
-        // valid data test
+        // data test
         it('valid date and year is below 1980', function () {
             expect(library.calcPriceOfBook('The Little Prince', 1943)).to.equal(`Price of The Little Prince is 10.00`);
+        })
+
+        // with array
+        it('invalid input - empty array', function () {
+            expect(() => library.findBook([], 'Desired Book')).to.throw('No books currently available');
         })
     
     
