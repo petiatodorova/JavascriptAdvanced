@@ -1,65 +1,77 @@
 const { expect } = require('chai');
-const library = require('./app.js');
-// 1. npm init -y
-// 2. npm install chai
-// 3. mocha app.test.js
-// 4. module.exports = library; --> in main 
-// 5. const library = require('./index.js'); --> here
-// 6. mocha app.test.js
+const findNewApartment = require('./findApartment.js');
 
-describe('Library tests ', function () {
+describe('findNewApartment tests ', function () {
     
-    // first thow errors
-    describe('calcPriceOfBook tests', function () {
-        it('invalid input - name of the book is not a string', function () {
-            expect(() => library.calcPriceOfBook(1, 1)).to.throw('Invalid input');
+    describe('isGoodLocation tests', function () {
+        it('City value is not a string', function () {
+            expect(() => findNewApartment.isGoodLocation(1, true)).to.throw('Invalid input!');
         })
-        it('invalid input - year is not an integer number', function () {
-            expect(() => library.calcPriceOfBook('a', 'a')).to.throw('Invalid input');
+        it('NearPublicTransportation is not a boolean', function () {
+            expect(() => findNewApartment.isGoodLocation('Sofia', 1)).to.throw('Invalid input!');
         })
-        it('valid date and year is below 1980', function () {
-            expect(library.calcPriceOfBook('The Little Prince', 1943)).to.equal(`Price of The Little Prince is 10.00`);
+        it('City is different than a "Sofia", "Plovdiv" or "Varna"', function () {
+            expect(findNewApartment.isGoodLocation('A', true)).to.equal(`This location is not suitable for you.`);
         })
-        it('valid date and year is equal to 1980', function () {
-            expect(library.calcPriceOfBook('The Little Prince', 1980)).to.equal(`Price of The Little Prince is 10.00`);
+        it('City is "Sofia"', function () {
+            expect(findNewApartment.isGoodLocation('Sofia', true)).to.equal(`You can go on home tour!`);
         })
-        it('valid date and year is more than 1980', function () {
-            expect(library.calcPriceOfBook('Test Book', 1981)).to.equal(`Price of Test Book is 20.00`);
+        it('City is "Plovdiv"', function () {
+            expect(findNewApartment.isGoodLocation('Sofia', true)).to.equal(`You can go on home tour!`);
         })
-    
+        it('City is "Varna"', function () {
+            expect(findNewApartment.isGoodLocation('Sofia', true)).to.equal(`You can go on home tour!`);
+        })
+        it('Value of the boolean nearPublicTransportation is false"', function () {
+            expect(findNewApartment.isGoodLocation('Sofia', false)).to.equal(`There is no public transport in area.`);
+        })
+
      
     });
 
-    describe('findBook tests', function () {
-        it('invalid input - empty array', function () {
-            expect(() => library.findBook([], 'Desired Book')).to.throw('No books currently available');
+        
+    describe('isLargeEnough tests', function () {
+        it('The minimalSquareMeters is not a number', function () {
+            expect(() => findNewApartment.isLargeEnough([40, 50, 60], '1')).to.throw('Invalid input!');
         })
-        it('valid input - available book', function () {
-            expect(library.findBook(['Desired Book'], 'Desired Book')).to.equal('We found the book you want.');
+        it('Apartments is empty array.', function () {
+            expect(() => findNewApartment.isLargeEnough([], 1)).to.throw('Invalid input!');
         })
-        it('valid input - not available book', function () {
-            expect(library.findBook(['Troy', 'Life Style', 'Torronto'], 'Desired Book')).to.equal('The book you are looking for is not here!');
+        it('Passed apartments parameter is not an array', function () {
+            expect(() => findNewApartment.isLargeEnough(1, 1)).to.throw('Invalid input!');
+        })
+        it('Add the area of apartment in resultArr if is equal or bigger than minimalSquareMeters', function () {
+            expect(findNewApartment.isLargeEnough([40, 50, 60], 20)).to.equal('40, 50, 60');
         })
     });
 
-    describe('arrangeTheBooks tests', function () {
-        it('the countBooks is not an integer number', function () {
-            expect(() => library.arrangeTheBooks('1')).to.throw('Invalid input');
+    describe('isItAffordable tests', function () {
+        it('The price is not a number', function () {
+            expect(() => findNewApartment.isItAffordable('1', 1)).to.throw('Invalid input!');
         })
-        it('the countBooks is a negative number', function () {
-            expect(() => library.arrangeTheBooks(-1)).to.throw('Invalid input');
+        it('The budget is not a number', function () {
+            expect(() => findNewApartment.isItAffordable(1, '1')).to.throw('Invalid input!');
         })
-        it('all the books are arranged on the shelves', function () {
-            expect(library.arrangeTheBooks(39)).to.equal('Great job, the books are arranged.');
+        it('The price is less than 0', function () {
+            expect(() => findNewApartment.isItAffordable(-1, 1)).to.throw('Invalid input!');
         })
-        it('all the books are arranged on the shelves - edge case 40 books', function () {
-            expect(library.arrangeTheBooks(40)).to.equal('Great job, the books are arranged.');
+        it('The price is 0', function () {
+            expect(() => findNewApartment.isItAffordable(0, 1)).to.throw('Invalid input!');
         })
-        it('all the books are more than 40 - insufficient space', function () {
-            expect(library.arrangeTheBooks(41)).to.equal('Insufficient space, more shelves need to be purchased.');
+        it('The budget is less than 0', function () {
+            expect(() => findNewApartment.isItAffordable(1, -1)).to.throw('Invalid input!');
         })
-    
-    
+        it('The budget is 0', function () {
+            expect(() => findNewApartment.isItAffordable(1, 0)).to.throw('Invalid input!');
+        })
+        it('Price is higher than your budget', function () {
+            expect(findNewApartment.isItAffordable(2, 1)).to.equal(`You don't have enough money for this house!`);
+        })
+        it('Price is exactly equal to your budget', function () {
+            expect(findNewApartment.isItAffordable(1, 1)).to.equal(`You can afford this home!`);
+        })
+        it('Price is less than your budget', function () {
+            expect(findNewApartment.isItAffordable(1, 2)).to.equal(`You can afford this home!`);
+        })
     });
-    
 });

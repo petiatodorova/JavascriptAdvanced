@@ -19,7 +19,8 @@ function arrayIteration() {
     console.log(doubled);
 
 
-    // filter - filters the array with the condition of the function
+    // filter - returns only items which are true for the condition item % 2 === 0
+    // filters the array with the condition of the function
     console.log('\n---filter example:');
     arr = [1, 2, 3];
     let evens = arr.filter(function (item) {
