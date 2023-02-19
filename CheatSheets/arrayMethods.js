@@ -50,6 +50,26 @@ function arrayMethods() {
     let removedElements = arr.splice(2, 2, "JS Nuggets");
     console.log(`The removed elements are [${removedElements}]`);
     console.log(`After splice the array is [${arr}]`);
+
+    function sortByTwoCriteria(input) {
+        input.sort((a, b) => (a.length - b.length || a.localeCompare(b)));
+        input.forEach(element => {
+            console.log(element);
+        });
+    }
+    
+    sortByTwoCriteria(['alpha', 
+    'beta', 
+    'gamma']);function sortByTwoCriteria(input) {
+    input.sort((a, b) => (a.length - b.length || a.localeCompare(b)));
+    input.forEach(element => {
+        console.log(element);
+    });
+}
+
+sortByTwoCriteria(['alpha', 
+'beta', 
+'gamma']);
 }
 
 arrayMethods();
